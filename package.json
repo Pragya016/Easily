@@ -1,0 +1,22 @@
+{
+  "name": "mini-project-nodejs",
+  "version": "1.0.0",
+  "description": "A job portal app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pragya016/Job-Portal-nodejs-.git"
+  },
+  "author": "pragya saxena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pragya016/Job-Portal-nodejs-/issues"
+  },
+  "homepage": "https://github.com/Pragya016/Job-Portal-nodejs-#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
