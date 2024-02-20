@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A job portal app",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +18,12 @@
   },
   "homepage": "https://github.com/Pragya016/Job-Portal-nodejs-#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }

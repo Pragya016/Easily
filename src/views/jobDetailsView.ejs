@@ -1,0 +1,85 @@
+<div class="job-container shadow-lg rounded-4 mx-auto w-50 mt-5">
+    <div class="card job-card">
+        <div class="card-header">
+            Actively Hiring
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                <b>
+                    <%= job.jobDesignation %>
+                </b>
+            </h5>
+            <p class="card-text">
+                Company : <strong>
+                    <%= job.companyName %>
+                </strong> <br>
+                Location : <%= job.jobLocation %> <br>
+                    Salary : <%= job.salary %> <br>
+                        Number Of Openings : <%= job.numberOfOpenings %> <br>
+                            Posted on <%= job.jobPosted %>
+            </p>
+
+            <p class="class-text">
+            <h6>Job Overview-</h6>
+            <%= job.jobOverView %>
+                </p>
+
+                <div class="card-body p-0 d-flex flex-column">
+                    <h6>Required Skills-</h6>
+                    <div class="d-flex flex-wrap">
+                        <span><a class=" btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">HTML</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">CSS</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">JavScript</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">NodeJs</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">React</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">MongoDB</a></span>
+                    </div>
+                </div>
+                <!-- <a href="/job-details/<%= job.id %>" class="btn btn-primary mt-3 w-25"><b>Apply</b></a> -->
+                <button type="button" class="btn btn-primary mt-3 w-25" data-bs-toggle="modal"
+                    data-bs-target="#jobApplication">
+                    Apply
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="jobApplication" tabindex="-1" aria-labelledby="jobApplicationLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="jobApplicationLabel">Apply in less than one minute.
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="#" class="register-form" method="post">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="name" class="form-control" id="name" name="name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email address</label>
+                                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                                            name="email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="mobile" class="form-label">Mobile No.</label>
+                                        <input type="number" class="form-control" id="mobile" name="mobile">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="document" class="form-label">Resume</label>
+                                        <input type="file" class="form-control" id="document" name="document">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<h1 class="text-center mt-5">Welcome to Easily!</h1>
+<p class="text-center mb-5">We'll help you to land your dream job.</p>
+<form action="/register" class="register-form shadow-lg rounded-4 px-5 py-5" method="post">
+    <% if(errorMessage.length> 0){ %>
+        <div class="alert alert-danger" role="alert">
+            <%= errorMessage[0].msg %>
+        </div>
+        <% } %>
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="name" class="form-control" id="name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="text" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+</form>

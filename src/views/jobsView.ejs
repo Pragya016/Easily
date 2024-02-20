@@ -1,0 +1,30 @@
+<div class="job-container">
+    <% jobs.forEach(job=> { %>
+        <div class="card shadow-lg rounded-3 job-card m-2">
+            <div class="card-header">
+                Actively Hiring
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= job.jobDesignation %>
+                </h5>
+                <p class="card-text">
+                    Location : <%= job.jobLocation %> <br>
+                        Salary : <%= job.salary %>
+                </p>
+                <div class="card-body p-0 d-flex flex-column">
+                    <h6>Required Skills-</h6>
+                    <div class="d-flex flex-wrap">
+                        <span><a class=" btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">HTML</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">CSS</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">JavScript</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">NodeJs</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">React</a></span>
+                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">MongoDB</a></span>
+                    </div>
+                </div>
+                <a href="/job-details/<%= job.id %>" class="btn btn-primary mt-3">See Details</a>
+            </div>
+        </div>
+        <% }) %>
+</div>
