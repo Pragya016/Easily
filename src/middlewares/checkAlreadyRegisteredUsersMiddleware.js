@@ -6,7 +6,7 @@ export function doesUserAlreadyExist(req, res, next) {
     // check if user already exists
     const doesUserAlreadyExist = registeredUsers.find(u => u.email == obj.email);
 
-    if (doesUserAlreadyExist) {
+    if (!doesUserAlreadyExist) {
         res.render('registerView', { errorMessage: [] });
     }
 

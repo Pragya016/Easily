@@ -45,9 +45,8 @@ const landingPageController = new LandingPageController();
 // auth routes
 app.get('/register', authController.displayRegisterView)
 app.get('/login', authController.displayLoginView)
-app.post('/register', validateFormData, doesUserAlreadyExist,  authController.displayLoginView);
-// app.post('/register', validateFormData, doesUserAlreadyExist, authController.displayLoginView);
-app.post('/login', registerUser, authController.varifyUser)
+app.post('/register', validateFormData, doesUserAlreadyExist,registerUser ,authController.displayLoginView);
+app.post('/login', authController.varifyUser)
 app.get('/logout', authController.logout); //this is supposed to be post method
 
 
@@ -55,9 +54,7 @@ app.get('/logout', authController.logout); //this is supposed to be post method
 app.get('/', landingPageController.displayLandingPage);
 app.get('/jobs', landingPageController.displayJobView);
 app.put('/jobs/:id', landingPageController.updateJobDetails);
-// app.post('/jobs', landingPageController.displayJobView);
 app.get('/job-details/:id', landingPageController.displayJobDetails);
-// app.delete('/job-details/:id', landingPageController.displayJobDetails);
 
 
 // render error page
