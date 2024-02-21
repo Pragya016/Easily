@@ -13,13 +13,25 @@ export class AuthController {
 
     varifyUser(req, res) {
         const { email, password } = req.body;
-        const isValidUser = model.isUserRegistered(email, password);
-        if (!isValidUser) {
-            return res.render('loginView', { errorMessage: "Something went wrong. Try again!" });
+        
+        // if user isn't logged in
+        if (!req.session.email && !req.session.password) {
+            res.render('loginView', { errorMessage: "No registered user found with this email address." });
         }
 
-        // req.session.userEmail = email;
-        // const products = ProductsModel.get();
+        // if user has entered invalid credentials
+        const isValidUser = model.isUserRegistered(email, password);
+        if (!isValidUser) {
+            res.render('loginView', { errorMessage: "Email or password is incorrect!"});
+        }
+
+
         res.redirect('/jobs');
+    }
+
+    logout(req, res) {
+        res.clearCookie('session_id');
+        // res.locals.isLoggedin = false;
+        res.redirect('/')
     }
 }

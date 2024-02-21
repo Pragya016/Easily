@@ -8,7 +8,11 @@ export class LandingPageController {
     }
 
     displayJobView(req, res) {
-        res.render('jobsView', { jobs: jobModel.getJobs()});
+        if (req.session.email && req.session.password || req.cookies.session_id) {
+            res.render('jobsView', { jobs: jobModel.getJobs() });
+        } else {
+            res.redirect('/login');
+        }
     }
 
     displayJobDetails(req, res) {

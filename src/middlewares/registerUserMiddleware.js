@@ -1,12 +1,18 @@
-import { registeredUsers } from "../models/jobs.js";
-
 export function registerUser(req, res, next) {
+
     const obj = req.body;
-    const newUser = {
-        name: obj.name,
-        email: obj.email,
-        password: obj.password
-    }
-    registeredUsers.push(newUser);
+    console.log(obj);
+    // create cookie
+    res.cookie('session_id', 'user' + req.body.email, {
+        maxAge: 2 * 24 * 60 * 60 * 1000
+    });
+
+    // setting local variable
+    // res.locals.isLoggedin = true;
+
+    // using session
+    req.session.isLoggedIn = true;
+    req.session.email = obj.email;
+    req.session.password = obj.password
     next();
 }

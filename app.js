@@ -6,10 +6,25 @@ import { validateFormData } from './src/middlewares/formValidationMiddleware.js'
 import { AuthController } from './src/controllers/authViewController.js';
 import { displayError } from './src/controllers/errorController.js';
 import { registerUser } from './src/middlewares/registerUserMiddleware.js';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
+import { doesUserAlreadyExist } from './src/middlewares/checkAlreadyRegisteredUsersMiddleware.js';
 
 const app = express();
 
-// set up body data parser
+// layout.ejs is not updating conditionally
+
+// setup session
+app.use(session({
+    secret: 'secret-key',
+    saveUninitialized: false,
+    resave: false
+}))
+
+// setup cookie parser
+app.use(cookieParser())
+
+// set up body data parser 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -20,6 +35,7 @@ app.set('views', path.join(path.resolve() + '/src' + '/views'));
 // using ejs layout
 app.use(expressEjsLayouts);
 app.use(express.static('src/views'));
+app.use(express.static('public'));
 
 
 // create instance of controller
@@ -29,9 +45,10 @@ const landingPageController = new LandingPageController();
 // auth routes
 app.get('/register', authController.displayRegisterView)
 app.get('/login', authController.displayLoginView)
-app.post('/register', validateFormData, registerUser, authController.displayLoginView)
-app.post('/login', authController.varifyUser)
-// app.post('/logout', authController.logout); //this is supposed to be post method
+app.post('/register', validateFormData, doesUserAlreadyExist,  authController.displayLoginView);
+// app.post('/register', validateFormData, doesUserAlreadyExist, authController.displayLoginView);
+app.post('/login', registerUser, authController.varifyUser)
+app.get('/logout', authController.logout); //this is supposed to be post method
 
 
 // job routes
