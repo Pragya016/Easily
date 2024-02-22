@@ -15,12 +15,12 @@
                 <div class="card-body p-0 d-flex flex-column">
                     <h6>Required Skills-</h6>
                     <div class="d-flex flex-wrap">
-                        <span><a class=" btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">HTML</a></span>
-                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">CSS</a></span>
-                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">JavScript</a></span>
-                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">NodeJs</a></span>
-                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">React</a></span>
-                        <span><a class="btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">MongoDB</a></span>
+                        <% const skills=job.skillSet.split(','); %>
+                            <% skills.forEach(skill=> { %>
+                                <span><a class=" btn btn-outline-primary py-0 px-2 mt-2 me-1" href="/jobs">
+                                        <%= skill %>
+                                    </a></span>
+                                <% }) %>
                     </div>
                 </div>
                 <a href="/job-details/<%= job.id %>" class="btn btn-primary mt-3">See Details</a>

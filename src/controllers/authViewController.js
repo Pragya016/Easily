@@ -8,30 +8,40 @@ export class AuthController {
     }
 
     displayLoginView(req, res) {
-        res.render('loginView', {errorMessage : ''});
+        res.render('loginView', { errorMessage: '' });
     }
 
     varifyUser(req, res) {
         const { email, password } = req.body;
-        
-        // if user isn't logged in
-        // if (!req.session.email && !req.session.password) {
-        //     res.render('loginView', { errorMessage: "No registered user found with this email address." });
-        // }
 
         // if user has entered invalid credentials
         const isValidUser = model.isUserRegistered(email, password);
         if (!isValidUser) {
-            res.render('loginView', { errorMessage: "Email or password is incorrect!"});
+            return res.render('loginView', { errorMessage: "Email or password is incorrect!" });
         }
 
+        res.locals.isLoggedIn = true;
 
+        // create cookies
+        res.cookie('userEmail', email, {
+            maxAge: 7 * 24 * 60 * 60 * 1000, // expires in 7 days
+        });
+
+        req.session.email = email
         res.redirect('/jobs');
     }
 
     logout(req, res) {
-        res.clearCookie('session_id');
-        // res.locals.isLoggedin = false;
-        res.redirect('/')
+        res.locals.userName = ''
+        res.clearCookie('userEmail');
+        req.session.destroy(err => {
+            if (err) {
+                return res.redirect('/404');
+            } else {
+                res.locals.isLoggedIn = false;
+                return res.redirect('/');
+            }
+        });
+
     }
 }

@@ -1,14 +1,21 @@
+import { registeredUsers } from "../models/jobs.js";
+
 export function registerUser(req, res, next) {
-
     const obj = req.body;
+    // // check if user already exists
+    // const doesUserAlreadyExist = registeredUsers.find(u => u.email == obj.email);
 
-    // create cookie
-    res.cookie('session_id', 'user' + req.body.email, {
-        maxAge: 2 * 24 * 60 * 60 * 1000
-    });
+    // if (!doesUserAlreadyExist) {
+    //     res.render('registerView', { errorMessage: [{msg : 'An user with this email already exists.'}] });
+    // }
 
-    // using session
-    req.session.email = obj.email;
-    req.session.password = obj.password
+    const newUser = {
+        name: obj.name,
+        email: obj.email,
+        password: obj.password
+    }
+
+    // push this new user into registered users array
+    registeredUsers.push(newUser);
     next();
 }

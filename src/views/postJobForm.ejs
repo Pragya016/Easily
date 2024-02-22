@@ -1,0 +1,28 @@
+<h1 class="text-center">Post A New Job</h1>
+<form action="/postjob" class="register-form mt-5 shadow-lg rounded-5 p-5 w-50" method="post">
+    <div class="mb-3">
+        <label for="title" class="form-label" required>Title</label>
+        <input type="text" class="form-control" id="title" name="title">
+    </div>
+    <div class="mb-3">
+        <label for="location" class="form-label" required>Location</label>
+        <input type="text" class="form-control" id="location" name="location">
+    </div>
+    <div class="mb-3">
+        <label for="salary" class="form-label" required>Salary</label>
+        <input type="number" class="form-control" id="salary" name="salary">
+    </div>
+    <div class="mb-3">
+        <label for="skills" class="form-label" required>Required Skills</label>
+        <input type="text" class="form-control" id="skills" name="skills">
+    </div>
+    <div class="mb-3">
+        <label for="numberOfOpenings" class="form-label" required>Number Of Openings</label>
+        <input type="number" class="form-control" id="numberOfOpenings" name="numberOfOpenings">
+    </div>
+    <div class="mb-3">
+        <label for="jobOverview" class="form-label" required>Job Overview</label>
+        <textarea class="form-control" rows="5" id="jobOverview" name="jobOverview"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3 px-5"><b>Upload</b></button>
+</form>
