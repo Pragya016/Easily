@@ -1,3 +1,1 @@
-function showMessage() {
-    alert('hello world')
-}
+alert('hi');

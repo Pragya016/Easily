@@ -9,7 +9,8 @@ import { registerUser } from './src/middlewares/registerUserMiddleware.js';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import { Auth } from './src/middlewares/authMiddleware.js';
-import { PostJobController } from './src/controllers/jobController.js';
+import { JobsController } from './src/controllers/jobController.js';
+import { ApplicantsController } from './src/controllers/applicantsController.js';
 
 const app = express();
 
@@ -51,9 +52,10 @@ app.use((req, res, next) => {
     }
     next();
 });
-// create instance of controller
+// create instance of controllers
 const authController = new AuthController();
 const landingPageController = new LandingPageController();
+const applicantsController = new ApplicantsController();
 
 // auth routes
 app.get('/register', authController.displayRegisterView)
@@ -65,19 +67,24 @@ app.get('/logout', authController.logout); //this is supposed to be post method
 
 // job routes
 app.get('/', landingPageController.displayLandingPage);
-app.get('/jobs', landingPageController.displayJobView);
-// app.put('/jobs/:id', landingPageController.updateJobDetails);
-app.get('/job-details/:id', landingPageController.displayJobDetails);
+app.get('/jobs', JobsController.displayJobView);
+app.get('/job-details/:id', JobsController.displayJobDetails);
 
 // rooutes for recruiter actions
-app.get('/postjob', auth.checkCookie, landingPageController.postNewJob)
-app.post('/postjob', PostJobController.postJob)
-app.get('/update-job/:id', PostJobController.displayUpdateJobForm);
-app.post('/update-job', PostJobController.updateJobDetails)
+app.get('/postjob', auth.checkCookie, JobsController.postNewJob)
+app.post('/postjob', JobsController.postJob)
+app.get('/update-job/:id', JobsController.displayUpdateJobForm);
+app.post('/jobs', JobsController.updateJobDetails)
+
+// job seeker's routes
+app.post('/job-details/:id', applicantsController.addApplicant)
 
 // render error page
 app.get('/404', displayError);
 
 // create a server
-app.listen(5500);
+app.listen(8000);
 console.log('server is listening...');
+
+
+// extra : i am a recuiter button will get disabled if the user is already logged in as a recuiter
