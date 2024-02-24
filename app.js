@@ -36,6 +36,7 @@ app.use(express.json());
 // setup view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(path.resolve() + '/src' + '/views'));
+// app.set('views', path.join(__dirname('views')))
 
 // using ejs layout
 app.use(expressEjsLayouts);
@@ -75,6 +76,7 @@ app.get('/postjob', auth.checkCookie, JobsController.postNewJob)
 app.post('/postjob', JobsController.postJob)
 app.get('/update-job/:id', JobsController.displayUpdateJobForm);
 app.post('/jobs', JobsController.updateJobDetails)
+app.delete('/job-details/:id', JobsController.deleteJob)
 
 // job seeker's routes
 app.post('/job-details/:id', applicantsController.addApplicant)
@@ -83,7 +85,7 @@ app.post('/job-details/:id', applicantsController.addApplicant)
 app.get('/404', displayError);
 
 // create a server
-app.listen(8000);
+app.listen(5500);
 console.log('server is listening...');
 
 

@@ -65,4 +65,9 @@ export class JobModel {
         jobs.push(newPost);
     }
 
+    deleteJob(id) {
+        const idx = jobs.findIndex(job => job.id == id);
+        jobs.splice(idx, 1);
+    }
+
 }

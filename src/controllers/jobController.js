@@ -45,4 +45,9 @@ export class JobsController {
         // res.redirect('/job-details/' + req.body.id);
         res.redirect('/jobs')
     }
+
+    static deleteJob(req, res) {
+        jobModel.deleteJob(req.params.id);
+        res.redirect('/jobs');
+    }
 }

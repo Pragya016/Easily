@@ -11,17 +11,22 @@
             <% if(isLoggedIn){ %>
                 <a href="/update-job/<%= job.id %>"><i class="fa-solid fa-pen-to-square"
                         style="font-size: 0.9rem; color: grey;"></i></a>
-                <a class="deleteJob()" href="/jobs"><i class="fa-solid fa-trash" style="font-size: 0.9rem; color: rgb(226, 0, 0);"></i></a>
+                <button type="button" class="btn p-0" onclick="deleteJob(<%= job.id %>)"><i class="fa-solid fa-trash"
+                        style="font-size: 0.9rem; color: rgb(226, 0, 0);"></i></button>
                 <% }%>
             </h5>
             <p class="card-text">
-                Company : <strong>
+                <i class="fa-solid fa-building" style="font-size: 0.9rem; margin-right: 5px; color: grey;"></i> <strong>
                     <%= job.companyName %>
                 </strong> <br>
-                Location : <%= job.jobLocation %> <br>
-                    Salary : <%= job.salary %> <br>
-                        Number Of Openings : <%= job.numberOfOpenings %> <br>
-                            Posted on <%= job.jobPosted %>
+                <i class="fa-solid fa-location-dot" style="font-size: 0.9rem; margin-right: 5px; color: grey;"></i>
+                <%= job.jobLocation %> <br>
+                    <i class="fa-solid fa-indian-rupee-sign" style="font-size: 0.9rem; margin-right: 5px; color: grey;"></i>
+                    <%= job.salary %> <br>
+                        <i class="fa-solid fa-users" style="font-size: 0.9rem; margin-right: 5px; color: grey;"></i>
+                        <%= job.numberOfOpenings %> <br>
+                            <i class="fa-regular fa-calendar" style="font-size: 0.9rem; margin-right: 5px; color: grey;"></i> Posted on
+                            <%= job.jobPosted %>
             </p>
             <p class="class-text">
             <h6>Job Overview-</h6>

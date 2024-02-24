@@ -6,22 +6,25 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">
-                    <%= job.jobDesignation %>
+                    <%= job.jobCatagory %>
                 </h5>
                 <p class="card-text">
-                    Location : <%= job.jobLocation %> <br>
-                        Salary : <%= job.salary %>
+                    <b>
+                        <%= job.jobDesignation %>
+                    </b><br>
+                    <%= job.jobLocation %> <br>
+                        <%= job.salary %>
                 </p>
                 <div class="card-body p-0 d-flex flex-column">
-                    <h6>Required Skills-</h6>
+                    <!-- <h6>Required Skills-</h6> -->
                     <div class="d-flex flex-wrap">
-                        <% if(job.skillSet != ''){ %>
-                                <% const skills=job.skillSet.split(',') %>
-                                    <% skills.forEach(skill=> {%>
-                                        <span><a class=" btn btn-outline-primary py-0 px-2 mt-2 me-1" href="#">
-                                                <%= skill %>
-                                            </a></span>
-                                        <% })}%>
+                        <% if(job.skillSet !='' ){ %>
+                            <% const skills=job.skillSet.split(',') %>
+                                <% skills.forEach(skill=> {%>
+                                    <span><a class=" btn btn-outline-primary py-0 px-2 mt-2 me-1" href="#">
+                                            <%= skill %>
+                                        </a></span>
+                                    <% })}%>
                     </div>
                 </div>
                 <a href="/job-details/<%= job.id %>" class="btn btn-primary mt-3">See Details</a>
