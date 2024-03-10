@@ -20,7 +20,7 @@ export class JobsController {
     }
 
     static postNewJob(req, res) {
-        res.render('postJobForm');
+        res.render('unauthorizedPageView');
     }
 
     static postJob(req, res) {

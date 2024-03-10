@@ -1,18 +1,20 @@
 import express from 'express';
 import path from 'path';
-import { LandingPageController } from './src/controllers/landingPageController.js';
+import session from 'express-session';
 import expressEjsLayouts from 'express-ejs-layouts';
+import cookieParser from 'cookie-parser';
+
+import { LandingPageController } from './src/controllers/landingPageController.js';
 import { validateFormData } from './src/middlewares/formValidationMiddleware.js';
 import { AuthController } from './src/controllers/authViewController.js';
 import { displayError } from './src/controllers/errorController.js';
 import { registerUser } from './src/middlewares/registerUserMiddleware.js';
-import session from 'express-session';
-import cookieParser from 'cookie-parser';
 import { Auth } from './src/middlewares/authMiddleware.js';
 import { JobsController } from './src/controllers/jobController.js';
 import { ApplicantsController } from './src/controllers/applicantsController.js';
 import { sendMail } from './src/middlewares/mailMiddleware.js';
-import dotenv from 'dotenv';
+import {connectToMongoDB} from './config/mongodbConfig.js';
+// import dotenv from 'dotenv';
 
 const app = express();
 
@@ -66,7 +68,7 @@ const applicantsController = new ApplicantsController();
 // auth routes
 app.get('/register', authController.displayRegisterView)
 app.get('/login', authController.displayLoginView)
-app.post('/register', validateFormData, registerUser, sendMail , authController.displayLoginView);
+app.post('/register', validateFormData, registerUser, sendMail , authController.registerUser);
 app.post('/login', authController.varifyUser)
 app.get('/logout', authController.logout); //this is supposed to be post method
 
@@ -91,7 +93,5 @@ app.get('/404', displayError);
 
 // create a server
 app.listen(5500);
-console.log('server is listening...');
-
-
-// extra : i am a recuiter button will get disabled if the user is already logged in as a recuiter
+ connectToMongoDB()
+console.log('server is listening at 5500.');
