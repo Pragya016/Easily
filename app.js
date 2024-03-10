@@ -11,8 +11,13 @@ import cookieParser from 'cookie-parser';
 import { Auth } from './src/middlewares/authMiddleware.js';
 import { JobsController } from './src/controllers/jobController.js';
 import { ApplicantsController } from './src/controllers/applicantsController.js';
+import { sendMail } from './src/middlewares/mailMiddleware.js';
+import dotenv from 'dotenv';
 
 const app = express();
+
+// config env file
+// dotenv.config();
 
 // setup session
 app.use(session({
@@ -61,7 +66,7 @@ const applicantsController = new ApplicantsController();
 // auth routes
 app.get('/register', authController.displayRegisterView)
 app.get('/login', authController.displayLoginView)
-app.post('/register', validateFormData, registerUser, authController.displayLoginView);
+app.post('/register', validateFormData, registerUser, sendMail , authController.displayLoginView);
 app.post('/login', authController.varifyUser)
 app.get('/logout', authController.logout); //this is supposed to be post method
 

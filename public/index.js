@@ -10,3 +10,5 @@ function deleteJob(id) {
 
     }
 }
+
+// mongodb+srv://pragya016:<password>@cluster1.h2sjnzx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1  
