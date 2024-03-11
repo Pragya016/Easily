@@ -16,10 +16,11 @@ export class AuthController {
         try {
             const { name, email, password } = req.body;
             await UserRepository.registerUser(name, email, password);
-            res.redirect('login');
+            res.redirect('/login');
         } catch (error) {
             console.log(error)
-            res.render('registerView', { errorMessage: [{msg : 'Something went wrong. Try again!'}] })
+            res.redirect('/404');
+            // res.render('registerView', { errorMessage: [{msg : 'Something went wrong. Try again!'}] })
         }
     }
 
