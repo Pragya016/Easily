@@ -68,7 +68,7 @@ const applicantsController = new ApplicantsController();
 // auth routes
 app.get('/register', authController.displayRegisterView)
 app.get('/login', authController.displayLoginView)
-app.post('/register', validateFormData, registerUser, sendMail , authController.registerUser);
+app.post('/register', validateFormData, registerUser , sendMail, authController.registerUser);
 app.post('/login', authController.varifyUser)
 app.get('/logout', authController.logout); //this is supposed to be post method
 

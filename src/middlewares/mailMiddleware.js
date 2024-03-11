@@ -15,7 +15,7 @@ export async function sendMail(req, res, next) {
         from: 'pragyasaxena4135@gmail.com',
         to: userMailId,
         subject: "Account Created",
-        text: 'Welcome to Easily! Your registration is successful. Start exploring job opportunities and take the next step in your career journey! \n \n Warm Regards, \n Team Easily',
+        text: 'Welcome to Easily! Your registration is successful. Start exploring job opportunities and take the next step in your career journey!🚀🚀 \n \n Warm Regards, \n Team Easily',
     };
 
     try {

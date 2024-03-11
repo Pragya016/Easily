@@ -9,15 +9,16 @@ export class AuthController {
     }
 
     displayLoginView(req, res) {
-        res.render('loginView');
+        res.render('loginView', { errorMessage: '' });
     }
 
     async registerUser(req, res) {
         try {
             const { name, email, password } = req.body;
             await UserRepository.registerUser(name, email, password);
-            res.render('loginView', { errorMessage: '' });
+            res.redirect('/login');
         } catch (error) {
+            console.log(error)
             res.redirect('errorPage');
         }
     }
