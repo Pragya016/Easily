@@ -24,24 +24,29 @@ export class AuthController {
         }
     }
 
-    varifyUser(req, res) {
-        const { email, password } = req.body;
+    async varifyUser(req, res) {
+        try {
+            const { email, password } = req.body;
 
-        // if user has entered invalid credentials
-        const isValidUser = model.isUserRegistered(email, password);
-        if (!isValidUser) {
-            return res.render('loginView', { errorMessage: "Email or password is incorrect!" });
+            // if user has entered invalid credentials
+            // const isValidUser = model.isUserRegistered(email, password);
+            const isValidUser = await UserRepository.verifyUser(email, password);
+            if (!isValidUser) {
+                return res.render('loginView', { errorMessage: "Email or password is incorrect!" });
+            }
+
+            res.locals.isLoggedIn = true;
+
+            // create cookies
+            res.cookie('userEmail', email, {
+                maxAge: 7 * 24 * 60 * 60 * 1000, // expires in 7 days
+            });
+
+            req.session.email = email
+            res.redirect('/jobs');
+        } catch (err) {
+            res.redirect('/404');
         }
-
-        res.locals.isLoggedIn = true;
-
-        // create cookies
-        res.cookie('userEmail', email, {
-            maxAge: 7 * 24 * 60 * 60 * 1000, // expires in 7 days
-        });
-
-        req.session.email = email
-        res.redirect('/jobs');
     }
 
     logout(req, res) {
