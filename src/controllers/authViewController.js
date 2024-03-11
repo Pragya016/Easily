@@ -19,7 +19,7 @@ export class AuthController {
             res.redirect('login');
         } catch (error) {
             console.log(error)
-            res.redirect('errorPage');
+            res.redirect('404');
         }
     }
 
