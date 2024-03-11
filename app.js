@@ -43,7 +43,7 @@ app.use(express.json());
 // setup view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(path.resolve() + '/src' + '/views'));
-// app.set('views', path.join(__dirname('views')))
+
 
 // using ejs layout
 app.use(expressEjsLayouts);

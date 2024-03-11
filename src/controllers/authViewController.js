@@ -1,6 +1,5 @@
-import bcrypt from 'bcrypt';
 import { JobModel } from "../models/jobsModel.js";
-import { getDB } from "../../config/mongodbConfig.js";
+import { UserRepository } from '../models/userRepository.js';
 
 const model = new JobModel();
 
@@ -15,15 +14,8 @@ export class AuthController {
 
     async registerUser(req, res) {
         try {
-            const {name, email, password} = req.body;
-
-            // generate hash password
-            const hashedPassword = await bcrypt.hash(password, 12);
-            const newUser = { name, email, password : hashedPassword }
-
-            const db = await getDB();
-            await db.collection('Recruiters').insertOne(newUser);
-            console.log(newUser);
+            const { name, email, password } = req.body;
+            await UserRepository.registerUser(name, email, password);
             res.render('loginView', { errorMessage: '' });
         } catch (error) {
             res.redirect('errorPage');
