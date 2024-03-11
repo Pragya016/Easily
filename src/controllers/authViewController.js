@@ -19,7 +19,7 @@ export class AuthController {
             res.redirect('login');
         } catch (error) {
             console.log(error)
-            res.redirect('404');
+            res.render('registerView', { errorMessage: [{msg : 'Something went wrong. Try again!'}] })
         }
     }
 
