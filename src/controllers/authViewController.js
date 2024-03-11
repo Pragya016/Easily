@@ -16,7 +16,7 @@ export class AuthController {
         try {
             const { name, email, password } = req.body;
             await UserRepository.registerUser(name, email, password);
-            res.redirect('/login');
+            res.redirect('login');
         } catch (error) {
             console.log(error)
             res.redirect('errorPage');
