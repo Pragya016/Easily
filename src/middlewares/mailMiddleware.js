@@ -12,18 +12,18 @@ export async function sendMail(req, res, next) {
     const userMailId = req.body.email;
 
     const mailOptions = {
-        from: 'pragyasaxena8279@gmail.com',
+        from: 'pragyasaxena4135@gmail.com',
         to: userMailId,
         subject: "Account Created",
-        text: 'Welcome to Easily! Your registration is successful. Start exploring job opportunities and take the next step in your career journey! \n \n Warm Regards, \n Team Easily' ,
+        text: 'Welcome to Easily! Your registration is successful. Start exploring job opportunities and take the next step in your career journey! \n \n Warm Regards, \n Team Easily',
     };
 
-    transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-            console.log(err);
-        } else {
-            next(); 
-        }
-    });
-    next();
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully");
+        next();
+    } catch (err) {
+        console.error("Error sending email:", err);
+        next(err); 
+    }
 }
