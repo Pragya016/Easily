@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+// config env file
+dotenv.config();
+
 import express from 'express';
 import path from 'path';
 import session from 'express-session';
@@ -14,12 +18,8 @@ import { JobsController } from './src/controllers/jobController.js';
 import { ApplicantsController } from './src/controllers/applicantsController.js';
 import { sendMail } from './src/middlewares/mailMiddleware.js';
 import {connectToMongoDB} from './config/mongodbConfig.js';
-// import dotenv from 'dotenv';
 
 const app = express();
-
-// config env file
-// dotenv.config();
 
 // setup session
 app.use(session({
@@ -92,6 +92,6 @@ app.post('/job-details/:id', applicantsController.addApplicant)
 app.get('/404', displayError);
 
 // create a server
-app.listen(5500);
+app.listen(process.env.PORT);
  connectToMongoDB()
 console.log('server is listening at 5500.');

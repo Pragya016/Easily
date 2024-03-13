@@ -1,5 +1,7 @@
 import { MongoClient } from "mongodb";
-
+import dotenv from 'dotenv';
+// config dotenv
+dotenv.config();
 // MongoDB connection URI
 const uri = 'mongodb://localhost:27017/Easily-Database';
 let client;
