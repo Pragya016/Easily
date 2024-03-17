@@ -16,8 +16,8 @@ import { registerUser } from './src/middlewares/registerUserMiddleware.js';
 import { Auth } from './src/middlewares/authMiddleware.js';
 import { JobsController } from './src/controllers/jobController.js';
 import { ApplicantsController } from './src/controllers/applicantsController.js';
-import { sendMail } from './src/middlewares/mailMiddleware.js';
-import {connectToMongoDB} from './config/mongodbConfig.js';
+import { connectToMongoDB } from './config/mongodbConfig.js';
+import { sendEmailToUser } from './src/middlewares/mailMiddleware.js'
 
 const app = express();
 
@@ -68,7 +68,7 @@ const applicantsController = new ApplicantsController();
 // auth routes
 app.get('/register', authController.displayRegisterView)
 app.get('/login', authController.displayLoginView)
-app.post('/register', validateFormData, registerUser , sendMail, authController.registerUser);
+app.post('/register', validateFormData, registerUser, sendEmailToUser, authController.registerUser);
 app.post('/login', authController.varifyUser)
 app.get('/logout', authController.logout); //this is supposed to be post method
 
@@ -77,7 +77,6 @@ app.get('/logout', authController.logout); //this is supposed to be post method
 app.get('/', landingPageController.displayLandingPage);
 app.get('/jobs', JobsController.displayJobView);
 app.get('/job-details/:id', JobsController.displayJobDetails);
-
 // rooutes for recruiter actions
 app.get('/postjob', auth.checkCookie, JobsController.postNewJob)
 app.post('/postjob', JobsController.postJob)
